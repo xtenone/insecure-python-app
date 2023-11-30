@@ -24,7 +24,7 @@ def greet():
     age = request.form['age']
 
     cur = mysql.connection.cursor()
-    cur.execute('INSERT INTO user (name, age) VALUES (\'%s\', \'%s\')' % (name, age))
+    cur.execute('INSERT INTO user (name, age) VALUES (%s, %s)', (name, age))
     mysql.connection.commit()
     cur.execute('SELECT * FROM user')
     data = cur.fetchall()
